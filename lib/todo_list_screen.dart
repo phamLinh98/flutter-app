@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'todo_model.dart'; // Import model để dùng class Todo
 
-// Màn hình chính - Todo List
+// Màn hình chính - Todo List (nhận prop initialTitle)
 class TodoListScreen extends StatefulWidget {
-  const TodoListScreen({super.key});
+  final String initialTitle; // Prop: Tiêu đề ban đầu từ main
+
+  const TodoListScreen({
+    super.key,
+    required this.initialTitle, // Bắt buộc truyền từ cha
+  });
 
   @override
   State<TodoListScreen> createState() => _TodoListScreenState();
@@ -29,7 +34,6 @@ class _TodoListScreenState extends State<TodoListScreen> {
 
     setState(() {
       _todos.add(Todo(title: _textController.text.trim()));
-      //_todos.add(Todo(title: "555")); // Tự động thêm todo "555" mỗi lần Add
       _textController.clear();
     });
 
@@ -71,7 +75,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text(
-          '📝 Danh Sách Công Việc',
+          widget.initialTitle, // Dùng prop từ main: widget.propName
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -166,7 +170,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
                         ),
                         SizedBox(height: 8),
                         Text(
-                          'Hãy thêm công việc đầu tiên! 😊', // Sửa emoji nếu cần
+                          'Hãy thêm công việc đầu tiên! 😊',
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey[400],

@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         useMaterial3: true,
       ),
-      home: TodoListScreen(),
+      home: TodoListScreen(
+        initialTitle: '📝 Todo App Của Bạn', // Truyền prop từ main!
+      ),
     );
   }
 }
